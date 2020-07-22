@@ -1,0 +1,686 @@
+{
+	"info": {
+		"_postman_id": "2e6761f7-aec7-43ad-9310-9f994f231390",
+		"name": "Jenkins",
+		"description": "Segmentation Service API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Payments&Transfers Copy",
+			"item": [
+				{
+					"name": "Between_Own_Account",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "efd20230-e09a-46ee-ba7e-4fcad368c70a",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.globals.set(\"timestamp\", moment().format(\"YYYY-MM-DD\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb638a93-c80d-4a79-9326-37bbd560e5e1",
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"TNFS-1001\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-apikey",
+								"value": "yyVU9KmuawEXtetMXel6PZbv8YQyrOgt",
+								"type": "text"
+							},
+							{
+								"key": "userId",
+								"value": "performancemavila+2110@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "trackingId",
+								"value": "16b2a927-45a7-43fc-96a2-2613ad763249",
+								"type": "text"
+							},
+							{
+								"key": "customerId",
+								"value": "1066270",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "source",
+								"value": "mobile",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip,deflate",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sourceAccountId\": \"BH33ABCO10662709101101\",\r\n    \"destinationAccountId\": \"BH54ABCO10662709101111\",\r\n    \"amount\": 0.240,\r\n    \"currency\": \"BHD\",\r\n    \"valueDate\": \"2020-07-22\",\r\n    \"description\": \"Transfer to own account\",\r\n    \"referenceNumber\": \"1594025328499\"\r\n}\r\n",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transfers/personal?language=en&unit=neo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transfers",
+								"personal"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "en"
+								},
+								{
+									"key": "unit",
+									"value": "neo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Between_Neo_Account",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7df566b3-0e3e-4485-af7c-0b1fae3abd55",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.globals.set(\"timestamp\", moment().format(\"YYYY-MM-DD\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a141b2a8-458b-4079-80b4-f22459789ec1",
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"TNFS-1000\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-apikey",
+								"type": "text",
+								"value": "yyVU9KmuawEXtetMXel6PZbv8YQyrOgt"
+							},
+							{
+								"key": "userId",
+								"type": "text",
+								"value": "performancemavila+2110@gmail.com"
+							},
+							{
+								"key": "trackingId",
+								"type": "text",
+								"value": "16b2a927-45a7-43fc-96a2-2613ad763249"
+							},
+							{
+								"key": "customerId",
+								"type": "text",
+								"value": "1066270"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "source",
+								"type": "text",
+								"value": "mobile"
+							},
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "gzip,deflate"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"amount\": 0.250,\r\n  \"currency\": \"BHD\",\r\n  \"description\": \"Transfer neo account\",\r\n  \"destinationAccountId\": \"BH82ABCO10666039101101\",\r\n  \"referenceNumber\": \"Tests\",\r\n  \"sourceAccountId\": \"BH33ABCO10662709101101\",\r\n  \"valueDate\": \"2020-07-22\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transfers/domestic?language=en&unit=neo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transfers",
+								"domestic"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "en"
+								},
+								{
+									"key": "unit",
+									"value": "neo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fawri_Transfer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "60b79368-6a89-4216-b662-fe5bc1ac0075",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.globals.set(\"timestamp\", moment().format(\"YYYY-MM-DD\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "65660ecd-becd-420a-a001-049764da2423",
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"TNFS-1004\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-apikey",
+								"type": "text",
+								"value": "yyVU9KmuawEXtetMXel6PZbv8YQyrOgt"
+							},
+							{
+								"key": "userId",
+								"type": "text",
+								"value": "performancemavila+2110@gmail.com"
+							},
+							{
+								"key": "trackingId",
+								"type": "text",
+								"value": "16b2a927-45a7-43fc-96a2-2613ad763249"
+							},
+							{
+								"key": "customerId",
+								"type": "text",
+								"value": "1066270"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "source",
+								"type": "text",
+								"value": "mobile"
+							},
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "gzip,deflate"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"amount\": 0.32,\r\n  \"currency\": \"BHD\",\r\n  \"description\": \"ilapay\",\r\n  \"destinationAccountId\": \"BH73BBKU00100000397817\",\r\n  \"paymentType\": \"Fawri\",\r\n  \"sourceAccountId\": \"BH33ABCO10662709101101\",\r\n    \"valueDate\": \"2020-07-22\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transfers/fawri?language=en&unit=neo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transfers",
+								"fawri"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "en"
+								},
+								{
+									"key": "unit",
+									"value": "neo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FawriPlus_Transfer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fcc55e58-1dc3-46b6-b1e6-1da509e7c289",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.globals.set(\"timestamp\", moment().format(\"YYYY-MM-DD\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "abd326c2-4191-47ba-b50a-2d397e29d35d",
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"TNFS-1004\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-apikey",
+								"type": "text",
+								"value": "yyVU9KmuawEXtetMXel6PZbv8YQyrOgt"
+							},
+							{
+								"key": "userId",
+								"type": "text",
+								"value": "performancemavila+2110@gmail.com"
+							},
+							{
+								"key": "trackingId",
+								"type": "text",
+								"value": "16b2a927-45a7-43fc-96a2-2613ad763249"
+							},
+							{
+								"key": "customerId",
+								"type": "text",
+								"value": "1066270"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "source",
+								"type": "text",
+								"value": "mobile"
+							},
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "gzip,deflate"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"amount\": 0.332,\r\n  \"currency\": \"BHD\",\r\n  \"description\": \"ILAFWARI1\",\r\n  \"destinationAccountId\": \"BH73BBKU00100000397817\",\r\n  \"paymentType\": \"FawriPlus\",\r\n  \"sourceAccountId\": \"BH33ABCO10662709101101\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transfers/fawri?language=en&unit=neo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transfers",
+								"fawri"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "en"
+								},
+								{
+									"key": "unit",
+									"value": "neo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "International_Transfer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "97dec132-1bc5-4eda-aab4-7ba1194ac0f8",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.globals.set(\"timestamp\", moment().format(\"YYYY-MM-DD\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "3ddc6c3e-53e7-4d3c-af00-13c6847a8541",
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"TNFS-1005\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-apikey",
+								"type": "text",
+								"value": "yyVU9KmuawEXtetMXel6PZbv8YQyrOgt"
+							},
+							{
+								"key": "userId",
+								"type": "text",
+								"value": "performancemavila+2110@gmail.com"
+							},
+							{
+								"key": "trackingId",
+								"type": "text",
+								"value": "16b2a927-45a7-43fc-96a2-2613ad763249"
+							},
+							{
+								"key": "customerId",
+								"type": "text",
+								"value": "1066270"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "source",
+								"type": "text",
+								"value": "mobile"
+							},
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "gzip,deflate"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                \"amount\": 0.500,\r\n                \"beneficiary\": {\r\n                                \"accounts\": [{\r\n                                                \"accountNumber\": \"AE220330000010493168177\",\r\n                                                \"swiftCode\": \"GIBAHUHB\"\r\n                                }],\r\n                                \"address\": {\r\n                                                \"address1\": \"Bank ABC Tower, Building 152\",\r\n                                                \"address2\": \"Road 1703, Block 317\",\r\n                                                \"address3\": \"Diplomatic Area\"\r\n                                },\r\n                                \"name\": \"saravanaguru\"\r\n                },\r\n                \"chargingType\": \"OUR\",\r\n                \"currency\": \"KWD\",\r\n                \"description\": \"INTTRA\",\r\n                \"paymentPurpose\": \"test\",\r\n                \"sourceAccountId\": \"BH33ABCO10662709101101\",\r\n                \"valueDate\": \"2020-07-22\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transfers/international?language=en&unit=neo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transfers",
+								"international"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "en"
+								},
+								{
+									"key": "unit",
+									"value": "neo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bill_Payments",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7bab86d0-fd7b-4a8e-9b29-d0bc57318368",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.globals.set(\"timestamp\", moment().format(\"YYYY-MM-DD\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "7098c930-0067-40f6-9081-ef3af97d9d3c",
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"BILL-1003\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-apikey",
+								"type": "text",
+								"value": "yyVU9KmuawEXtetMXel6PZbv8YQyrOgt"
+							},
+							{
+								"key": "userId",
+								"type": "text",
+								"value": "performancemavila+2110@gmail.com"
+							},
+							{
+								"key": "trackingId",
+								"type": "text",
+								"value": "16b2a927-45a7-43fc-96a2-2613ad763249"
+							},
+							{
+								"key": "customerId",
+								"type": "text",
+								"value": "1066270"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "source",
+								"type": "text",
+								"value": "mobile"
+							},
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "gzip,deflate"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"amount\": 0.310,\r\n  \"billNumber\": \"22222222\",\r\n  \"billerCode\": \"ONBLBHBM\",\r\n  \"code\": \"ONBLPSPD001\",\r\n  \"currency\": \"BHD\",\r\n  \"customerIdentificationType\": \"SN\",\r\n  \"customerIdentificationValue\": \"22222222\",\r\n  \"paymentChannel\": \"MBANK\",\r\n  \"paymentConfigurations\": [\r\n    {\r\n      \"customFields\": [\r\n      {\r\n\t     \"fieldName\": \"InvoiceID\",\r\n\t\t\"fieldLabel\": null,\r\n\t\t\"fieldType\": null,\r\n\t\t\"fieldFormat\": null,\r\n\t\t\"fieldMask\": null,\r\n\t\t\"fieldStatus\": null,\r\n\t\t\"fieldValue\": \"tu1594028552494\"\r\n      }\r\n      ]\r\n    }\r\n  ],\r\n  \"paymentType\": \"FawriPlus\",\r\n  \"sourceAccount\": \"BH33ABCO10662709101101\"\r\n}\r\n",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/billers/payment?language=en&unit=neo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"billers",
+								"payment"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "en"
+								},
+								{
+									"key": "unit",
+									"value": "neo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fund_Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "81b23bf6-b8c7-45db-9d23-ce9886d76dbd",
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"TNFS-1001\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-apikey",
+								"value": "yyVU9KmuawEXtetMXel6PZbv8YQyrOgt",
+								"type": "text"
+							},
+							{
+								"key": "userId",
+								"value": "performancemavila+2110@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "trackingId",
+								"value": "16b2a927-45a7-43fc-96a2-2613ad763249",
+								"type": "text"
+							},
+							{
+								"key": "customerId",
+								"value": "1066270",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "source",
+								"value": "backbase",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip,deflate",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"transactionId\": \"4637283\",\r\n  \"accountId\": \"BH33ABCO10662709101101\",\r\n  \"paymentDetails\": null,\r\n  \"entries\": [\r\n    {\r\n      \"transactionTypeId\": \"NMSC\",\r\n      \"accountId\": \"BH33ABCO10662709101101\",\r\n      \"amount\": 20,\r\n      \"accountingCenter\": \"91000001\",\r\n      \"amountCurrency\": \"BHD\",\r\n      \"entryType\": \"credit\",\r\n      \"valueDate\": \"2020-07-22\",\r\n      \"reversalNumber\": \"0\",\r\n      \"chargeCode\": \"\",\r\n      \"narrativeCode\": \"\",\r\n      \"narrativeLines\": [\r\n        \"Aqeelsa\",\r\n        \"\",\r\n        \"\",\r\n        \"\",\r\n        \"\",\r\n        \"\"\r\n      ]\r\n    },\r\n    {\r\n      \"transactionTypeId\": \"NMSC\",\r\n      \"accountId\": \"1010100\",\r\n      \"amount\": 20,\r\n      \"amountCurrency\": \"BHD\",\r\n      \"entryType\": \"debit\",\r\n      \"accountingCenter\": \"91000001\",\r\n      \"valueDate\": \"2020-07-22\",\r\n      \"reversalNumber\": \"0\",\r\n      \"chargeCode\": \"NCHG\",\r\n      \"narrativeCode\": \"CWL\",\r\n      \"narrativeLines\": [\r\n        \"Aqeel\",\r\n        \"\",\r\n        \"\",\r\n        \"\",\r\n        \"\",\r\n        \"\"\r\n      ]\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transactions/post?language=en&unit=neo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transactions",
+								"post"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "en"
+								},
+								{
+									"key": "unit",
+									"value": "neo"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"variable": [
+		{
+			"id": "baseUrl",
+			"key": "baseUrl",
+			"value": "https://localhost/v1",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

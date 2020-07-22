@@ -1,0 +1,49 @@
+{
+	"id": "23e8d9b9-6daf-4a2e-86ac-2e794824a32e",
+	"values": [
+		{
+			"key": "POTID",
+			"value": "261",
+			"enabled": true
+		},
+		{
+			"key": "BHDAcc",
+			"value": "BH98ABCO12069349101001",
+			"enabled": true
+		},
+		{
+			"key": "USDAcc",
+			"value": "BH54ABCO10662709101111",
+			"enabled": true
+		},
+		{
+			"key": "Fawri",
+			"value": "BH30AUBB00053000585018",
+			"enabled": true
+		},
+		{
+			"key": "timestamp",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "NeoAcc",
+			"value": "BH82ABCO10666039101101",
+			"enabled": true
+		},
+		{
+			"key": "International",
+			"value": "HU32116000060000000008943044",
+			"enabled": true
+		},
+		{
+			"key": "newaccmail",
+			"value": "mavericila+pondyy1o1@gmail.com",
+			"enabled": true
+		}
+	],
+	"name": "My Workspace Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2020-07-21T17:20:31.284Z",
+	"_postman_exported_using": "Postman/7.27.1"
+}
